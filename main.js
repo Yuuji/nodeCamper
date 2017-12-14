@@ -1,8 +1,6 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
-const ipc = require('electron').ipcMain;
-const dhtsensor = require('node-dht-sensor');
 
 require('electron-reload')(__dirname, {
 	  electron: require('electron-prebuilt')
@@ -22,6 +20,8 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }));
+
+  //win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -54,14 +54,5 @@ app.on('activate', () => {
   }
 });
 
-ipc.on('getTemperature', function(event, data) {
-	dhtsensor.read(22, 4, function(err, temperature, humidity) {
-		if (!err) {
-			result = {
-				temperature: temperature,
-				humidity: humidity
-			};
-			event.sender.send('temperatureReply', result);
-		}
-	});
-});
+require('./src/dht22.js').run();
+require('./src/mcp23017.js').run(0x20);

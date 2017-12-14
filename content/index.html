@@ -3,11 +3,35 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Smart Camper Home!</title>
+		<link rel="stylesheet" type="text/css" href="third-party/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="third-party/flat-ui/css/flat-ui.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 	</head>
 	<body>
-		Temperatur: <span id="temperature"></span><br />
-		Luftfeuchtigkeit: <span id="humidity"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3">Temperatur:</div>
+				<div class="col-xs-2"><a href="#" id="temperature" class="btn btn-block btn-lg btn-primary"></a></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">Luftfeuchtigkeit:</div>
+				<div class="col-xs-2"><a href="#" id="humidity" class="btn btn-block btn-lg btn-primary"></a></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="1">1</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="2">2</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="3">3</a></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="4">4</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="5">5</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="6">6</a></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="7">7</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="8">8</a></div>
+			</div>
+		</div>
 		<script src = "./js/app.js" ></script>
 	</body>
 </html>
