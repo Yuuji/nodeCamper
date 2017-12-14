@@ -1,0 +1,30 @@
+{
+  "name": "nodecamper",
+  "version": "0.0.1",
+  "description": "Smart camper home",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuuji/nodeCamper.git"
+  },
+  "keywords": [
+    "camper",
+    "smarthome"
+  ],
+  "author": "Mia Sophie Moeller <m.moeller@bytevision.net>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Yuuji/nodeCamper/issues"
+  },
+  "homepage": "https://github.com/Yuuji/nodeCamper#readme",
+  "dependencies": {
+    "electron": "^1.7.9",
+    "electron-reload": "^1.2.2",
+    "jquery": "^3.2.1",
+    "node-dht-sensor": "0.0.33"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.13",
+    "electron-rebuild": "^1.6.0"
+  }
+}
