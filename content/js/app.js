@@ -13,7 +13,7 @@ $(function() {
 	}
 
 	ipc.on('getRelaisReply', function(event, response) {
-		for(var i=0; i<7; i++) {
+		for(var i=0; i<16; i++) {
 			var btn = $('.btn-relais[data-relais=' + (i+1) + ']');
 
 			if (response.relais[i] === 1) {

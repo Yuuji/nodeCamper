@@ -1,30 +1,36 @@
 const ipc = require('electron').ipcMain;
 const i2c = require('i2c');
 
-var pins = [0, 0, 0, 0, 0, 0, 0, 0];
+const translateHex0 = [0, 1, 3, 2, 4, 5, 6, 7];
+const translateHex1 = [0, 1, 2, 3, 4, 5, 6, 7]
+
+var pins = [];
 
 exports.run = function (address) {
 	var wire = new i2c(address, {device: '/dev/i2c-1'});
 
-	ipc.on('getRelais', function(event) {
-		wire.read(2, function(err, res) {
-			var hex = ~res[1];
-			pins[0] = hex & 1;
-			hex = hex >> 1;
-			pins[1] = hex & 1;
-			hex = hex >> 1;
-			pins[3] = hex & 1;
-			hex = hex >> 1;
-			pins[2] = hex & 1;
-			hex = hex >> 1;
-			pins[4] = hex & 1;
-			hex = hex >> 1;
-			pins[5] = hex & 1;
-			hex = hex >> 1;
-			pins[6] = hex & 1;
-			hex = hex >> 1;
-			pins[7] = hex & 1;
+	var getPins = function(callback) {
+		wire.readBytes(0, 2, function(err, res) {
+			var hex = ~res[0];
+			for (var i = 0; i < translateHex0.length; i++) {
+				pins[translateHex0[i]] = hex & 1;
+				hex = hex >> 1;
+			}
 			
+			hex = ~res[1];
+			for (var i = 0; i < translateHex1.length; i++) {
+				pins[translateHex1[i]+8] = hex & 1;
+				hex = hex >> 1;
+			}
+
+			callback && callback();
+		});
+	};
+
+	getPins();
+
+	ipc.on('getRelais', function(event) {
+		getPins(function() {	
 			result = {relais: pins};
 			event.sender.send('getRelaisReply', result);	
 		});
@@ -37,27 +43,23 @@ exports.run = function (address) {
 		} else {
 			pins[data.pin-1] = 0;
 		}
+		
+		var hex0 = 0;
+		for (var i = translateHex0.length - 1; i >= 0; i--) {
+			hex0 = hex0 << 1;
+			hex0 = hex0 | pins[translateHex0[i]];
+		}
+		hex0 = ~hex0;
+		
+		
+		var hex1 = 0;
+		for (var i = translateHex1.length - 1; i >= 0; i--) {
+			hex1 = hex1 << 1;
+			hex1 = hex1 | pins[translateHex1[i]+8];
+		}
+		hex1 = ~hex1;
 
-		var hex = 0;
-		hex = hex << 1;
-		hex = hex | pins[7];
-		hex = hex << 1;
-		hex = hex | pins[6];
-		hex = hex << 1;
-		hex = hex | pins[5];
-		hex = hex << 1;
-		hex = hex | pins[4];
-		hex = hex << 1;
-		hex = hex | pins[2];
-		hex = hex << 1;
-		hex = hex | pins[3];
-		hex = hex << 1;
-		hex = hex | pins[1];
-		hex = hex << 1;
-		hex = hex | pins[0];
-
-		hex = ~hex;
-
-		wire.write([0, hex], function(err) { });
+		wire.write([0, hex0], function(err) { });
+		wire.write([1, hex1], function(err) { });
 	});
 };
