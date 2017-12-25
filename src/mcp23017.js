@@ -1,8 +1,8 @@
 const ipc = require('electron').ipcMain;
 const i2c = require('i2c');
 
-const translateHex0 = [0, 1, 3, 2, 4, 5, 6, 7];
-const translateHex1 = [0, 1, 2, 3, 4, 5, 6, 7]
+const translateHex0 = [7, 6, 5, 4, 3, 2, 1, 0];
+const translateHex1 = [7, 6, 5, 4, 3, 2, 1, 0];
 
 var pins = [];
 
