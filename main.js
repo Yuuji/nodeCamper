@@ -6,35 +6,41 @@ require('electron-reload')(__dirname, {
 	  electron: require('electron-prebuilt')
 });
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let win;
+let settings;
+let dht22;
+let mcp23017;
 
 function createWindow () {
-  // Create the browser window.
-  win = new BrowserWindow({width: 720, height: 480, frame: false, fullscreen: true});
+	// Create the browser window.
+	win = new BrowserWindow({width: 720, height: 480, frame: false, fullscreen: true});
 
-  // and load the index.html of the app.
-  win.loadURL(url.format({
-    pathname: path.join(__dirname, 'content/index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
+	// and load the index.html of the app.
+	win.loadURL(url.format({
+		pathname: path.join(__dirname, 'content/index.html'),
+		protocol: 'file:',
+		slashes: true
+	}));
 
-  //win.webContents.openDevTools();
+	// Uncomment if dev tools are wanted
+	//win.webContents.openDevTools();
 
-  // Emitted when the window is closed.
-  win.on('closed', () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    win = null
-  });
+	// Emitted when the window is closed.
+	win.on('closed', () => {
+		// Dereference the window object, usually you would store windows
+		// in an array if your app supports multi windows, this is the time
+		// when you should delete the corresponding element.
+		win = null
+	});
+
+	// load settings
+	settings = require('electron-settings');
+
+	// load modules
+	dht22 = require('./src/dht22.js').run(4);
+	mcp23017 = require('./src/mcp23017.js').run(0x20);
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
 // Quit when all windows are closed.
@@ -53,6 +59,3 @@ app.on('activate', () => {
     createWindow();
   }
 });
-
-require('./src/dht22.js').run(4);
-require('./src/mcp23017.js').run(0x20);
