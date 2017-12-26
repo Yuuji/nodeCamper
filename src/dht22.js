@@ -1,9 +1,9 @@
 const ipc = require('electron').ipcMain;
 const dhtsensor = require('node-dht-sensor');
 
-exports.run = function () {
+exports.run = function (port) {
 	ipc.on('getTemperature', function(event, data) {
-		dhtsensor.read(22, 4, function(err, temperature, humidity) {
+		dhtsensor.read(22, port, function(err, temperature, humidity) {
 			if (!err) {
 				result = {
 					temperature: temperature,

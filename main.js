@@ -54,5 +54,5 @@ app.on('activate', () => {
   }
 });
 
-require('./src/dht22.js').run();
+require('./src/dht22.js').run(4);
 require('./src/mcp23017.js').run(0x20);
