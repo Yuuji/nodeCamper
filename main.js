@@ -13,7 +13,7 @@ let mcp23017;
 
 function createWindow () {
 	// Create the browser window.
-	win = new BrowserWindow({width: 720, height: 480, frame: false, fullscreen: true});
+	global.win = win = new BrowserWindow({width: 720, height: 480, frame: false, fullscreen: true});
 
 	// and load the index.html of the app.
 	win.loadURL(url.format({
@@ -23,7 +23,7 @@ function createWindow () {
 	}));
 
 	// Uncomment if dev tools are wanted
-	//win.webContents.openDevTools();
+	win.webContents.openDevTools();
 
 	// Emitted when the window is closed.
 	win.on('closed', () => {
@@ -34,7 +34,7 @@ function createWindow () {
 	});
 
 	// load settings
-	settings = require('electron-settings');
+	global.settings = settings = require('electron-settings');
 
 	// load modules
 	dht22 = require('./src/dht22.js').run(4);

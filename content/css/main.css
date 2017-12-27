@@ -5,3 +5,16 @@ html, body, .btn {
 .row {
 	margin-bottom: 10px;
 }
+
+nav {
+	display: none;
+}
+
+.container {
+	display: none;
+	margin: 10px;
+}
+
+.container#main {
+	display: block;
+}

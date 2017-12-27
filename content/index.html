@@ -8,7 +8,12 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 	</head>
 	<body>
-		<div class="container">
+		<nav class="navbar navbar-embossed">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="#" class="gohome"><span class="fui-arrow-left"></span></a></li>
+			</ul>
+		</nav>
+		<div id="main" class="container">
 			<div class="row">
 				<div class="col-xs-3">Temperatur:</div>
 				<div class="col-xs-2"><a href="#" id="temperature" class="btn btn-block btn-lg btn-primary">?</a></div>
@@ -18,34 +23,46 @@
 				<div class="col-xs-2"><a href="#" id="humidity" class="btn btn-block btn-lg btn-primary">?</a></div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="1">1</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="2">2</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="3">3</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="1">1</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="2">2</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="3">3</a></div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="4">4</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="5">5</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="6">6</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="4">4</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="5">5</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="6">6</a></div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="7">7</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="8">8</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="9">9</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="7">7</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="8">8</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="9">9</a></div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="10">10</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="11">11</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="12">12</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="10">10</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="11">11</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="12">12</a></div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="13">13</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="14">14</a></div>
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="15">15</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="13">13</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="14">14</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="15">15</a></div>
 			</div>
 			<div class="row">
-				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relais" data-relais="16">16</a></div>
+				<div class="col-xs-3"><a href="#" class="btn btn-block btn-lg btn-default btn-relay" data-relay="16">16</a></div>
 			</div>
 		</div>
-		<script src = "./js/app.js" ></script>
+
+		<div id="temperature-settings" class="container">
+			<div class="row">
+				<div class="col-xs-3">Heizung auf Relais:</div>
+				<div class="col-xs-3"><select id="temperature-settings-relay" class="form-control select select-default mrs mbm"></select></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3"></div>
+				<div class="col-xs-3"><a href="#" id="temperature-settings-save" class="btn btn-block btn-lg btn-primary">Speichern</a></div>
+			</div>
+		</div>
+		<script src="./js/app.js"></script>
+		<script src="./js/jquery.longpress.js"></script>
 	</body>
 </html>

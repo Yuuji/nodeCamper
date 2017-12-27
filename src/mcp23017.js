@@ -31,7 +31,7 @@ exports.run = function (address) {
 
 	ipc.on('getRelais', function(event) {
 		getPins(function() {	
-			result = {relais: pins};
+			result = {relay: pins};
 			event.sender.send('getRelaisReply', result);	
 		});
 	});
